@@ -1,0 +1,33 @@
+{
+  "name": "dosport-api",
+  "version": "1.0.0",
+  "description": "API para el sitio web DoSport de Multiasesoría Alfa Dos Mil",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kuiper-Dev/DOSport-API.git"
+  },
+  "keywords": [],
+  "author": "Alfredo Marrero para Kuiper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kuiper-Dev/DOSport-API/issues"
+  },
+  "homepage": "https://github.com/Kuiper-Dev/DOSport-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "engines": {
+    "node": "14.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
