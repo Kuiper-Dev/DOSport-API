@@ -1,11 +1,12 @@
 const mysql = require ('mysql');
 
 const mysqlConnection=mysql.createConnection({
-    host:'database-1.clvx5mktpgqg.us-east-1.rds.amazonaws.com'
-    ,user:'admin'
-    ,password:'rasengan_Do22'
-    ,database:'DoSport'
-    ,port:3306
+    host:'kuiper.clvx5mktpgqg.us-east-1.rds.amazonaws.com',
+    user:'administrator',
+    password:'spaMonaco_Monza19',
+    database: 'doSport_Invetory',
+    port:3306,
+    multipleStatements: true
 });
 
 mysqlConnection.connect(function(err){

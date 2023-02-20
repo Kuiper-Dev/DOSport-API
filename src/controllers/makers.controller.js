@@ -1,20 +1,37 @@
+//const mysqlConnection = require('../database/connection');
+//makersCtrl={};
+/*makersCtrl.addProduct=async(req, res)=>{
+    mysqlConnection.query('INSERT INTO KS_Makers  set ?',[req.body], (err, rows)=>{
+        if(err){
+           return res.send(err);
+        }else{
+            res.json(rows);
+        }
+    });
+};
+makersCtrl.getMakers = async(req, res)=>{
+    await mysqlConnection.query('SELECT maker.makerId, maker.name FROM KS_Makers as maker', (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+}
+module.exports=makersCtrl;*/
 const db = require("../models");
-const Products= db.products;
+const Makers= db.makers;
 const sq = db.sequelize;
 const Op = db.Sequelize.Op;
 /*Add new Maker*/ 
-exports.addProduct= async(req, res)=>{
+exports.addMaker= async(req, res)=>{
     try {
-        const product = {
-          productId:req.body.productId,
+        const maker = {
+          makerId:req.body.makerId,
           name: req.body.name,
-          productCode:req.body.productCode,
-          makerId:body.req.makerId,
-          statusId:req.body.statusId,
-          unitId:req.body.unitId
         };
     
-        Products.create(product)
+        Makers.create(maker)
         .then(data => {
           res.json(data);
         })
@@ -29,10 +46,10 @@ exports.addProduct= async(req, res)=>{
         return res.status(500).json({ message: error.message });
       }    
 };
-/*Get Products's List*/ 
-exports.getProducts = async (req, res)=>{
+/*Get Maker's List*/ 
+exports.getMakers = async (req, res)=>{
     try {
-        Products.findAll()
+        Makers.findAll()
           .then(data => {
             res.json(data);
           })
@@ -46,29 +63,11 @@ exports.getProducts = async (req, res)=>{
         return res.status(500).json({ message: error.message });
       }
 };
-/*Get Product information*/
-exports.getProduct   = async(req, res)=>{
+/*Get Maker information*/
+exports.getMaker = async(req, res)=>{
     try {
         const { id } = req.params;
-        await Products.findOne({ where: { productId: id } })
-        .then(data => {
-          res.json(data);
-        })
-        .catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while retrieving ."
-          });
-        });
-      } catch (error) {
-        return res.status(500).json({ message: error.message });
-      }   
-};
-
-exports.getProductByCode   = async(req, res)=>{
-    try {
-        const { productCode } = req.params;
-        await Products.findOne({ where: { productCode: productCode } })
+        await Makers.findOne({ where: { makerId: id } })
         .then(data => {
           res.json(data);
         })
