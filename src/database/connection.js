@@ -19,4 +19,5 @@ mysqlConnection.connect(function(err){
 });
 
 module.exports= mysqlConnection;
+//module.exports= sequelize;
 

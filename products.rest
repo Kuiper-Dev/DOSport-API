@@ -1,0 +1,16 @@
+POST http://localhost:3000/productos
+Content-Type:application/json
+
+{
+    "name": "Casco",
+    "productCode":"PRO 2017",
+    "makerId":1,
+    "statusId":1,
+    "unitId":1
+}
+
+###
+GET http://localhost:3000/productos
+
+###
+GET http://localhost:3000/productos/resumen

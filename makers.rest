@@ -1,0 +1,9 @@
+POST http://localhost:3000/fabricantes
+Content-Type:application/json
+
+{
+    "name": "Pioneer",
+}
+
+###
+GET http://localhost:3000/fabricantes
