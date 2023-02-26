@@ -1,0 +1,29 @@
+POST http://localhost:3000/lotes
+Content-Type:application/json
+
+{
+    "productId": 2,
+    "quantity":50,
+    "publicPrice":25000,
+    "discount":5,
+    "stateId":1
+}
+
+
+###
+POST http://localhost:3000/lotes/ubicacion
+Content-Type:application/json
+
+{
+    "address": "Cartago, Costa Rica",
+    "lat": 9.86424,
+    "lng":-83.92044,
+    "stateId":5, //Se refiere a la provincia
+    "batchId":3
+}
+
+###
+GET http://localhost:3000/lotes
+
+###
+GET http://localhost:3000/lotes/ubicacion/3
