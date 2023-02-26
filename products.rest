@@ -14,3 +14,6 @@ GET http://localhost:3000/productos
 
 ###
 GET http://localhost:3000/productos/resumen
+
+###
+GET http://localhost:3000/productos/imagen/1

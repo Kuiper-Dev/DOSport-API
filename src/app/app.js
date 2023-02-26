@@ -9,6 +9,7 @@ const sequelize = require('../database/connection');
 
 
 const productsRoutes = require('../routes/products.routes');
+const batchesRoutes = require('../routes/batches.routes');
 //const makersRoutes = require('../routes/makers.routes');
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.set('port', config.port);
 
 
 app.use(productsRoutes);
+app.use(batchesRoutes);
 //app.use(makersRoutes);
 
 //middlewares

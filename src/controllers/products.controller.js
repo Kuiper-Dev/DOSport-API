@@ -97,6 +97,26 @@ productsCtrl.addProducts=async(req, res)=>{
     });
 
 };
+productsCtrl.addProductInfo = async(req, res)=>{
+  const {description, productId}=req.body;
+  mysqlConnection.query("INSERT INTO DS_ProductInfo (description, productId) VALUES (?,?)", [description, productId],(err, rows, fields)=>{
+    if(!err){
+      res.json({status:'Product saved'});
+    }else{
+      console.log(err);
+    }
+  });
+};
+productsCtrl.addProductImage = async(req, res)=>{
+  const {url, productId}=req.body;
+  mysqlConnection.query("INSERT INTO DS_ProductsImage (url, productId) VALUES (?,?)", [url, productId],(err, rows, fields)=>{
+    if(!err){
+      res.json({status:'Image added'});
+    }else{
+      console.log(err);
+    }
+  });
+};
 productsCtrl.getProductsResume=async(req, res)=>{
   mysqlConnection.query('CALL getProductsResume()', (err, rows, fields)=>{
     if(!err){
@@ -108,7 +128,7 @@ productsCtrl.getProductsResume=async(req, res)=>{
 };
 
 productsCtrl.getProducts=async(req, res)=>{
-  mysqlConnection.query('CALL getProducts()', (err, rows, results,fields)=>{
+  mysqlConnection.query('CALL getProducts()', (err, rows,fields)=>{
     if(!err){
       res.json(rows[0]);
     }else{
@@ -116,4 +136,15 @@ productsCtrl.getProducts=async(req, res)=>{
     }
   });
 };
+
+productsCtrl.getProductsImage=async(req, res)=>{
+  const { id } = req.params;
+  mysqlConnection.query('CALL getProductImages(?)', id, (err, rows, results,fields)=>{
+    if(!err){
+      res.json(rows[0]);
+    }else{
+      console.log(err);
+    }
+  }); 
+}
 module.exports= productsCtrl;
