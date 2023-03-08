@@ -90,7 +90,7 @@ productsCtrl.addProducts=async(req, res)=>{
     const {name, productCode, makerId, statusId}=req.body;
     mysqlConnection.query("INSERT INTO DS_Products (name, productCode, makerId, statusId) VALUES (?,?,?,?)", [name, productCode, makerId, statusId],(err, rows, fields)=>{
       if(!err){
-        res.json({status:'Product saved'});
+        res.json(rows.insertId);
       }else{
         console.log(err);
       }

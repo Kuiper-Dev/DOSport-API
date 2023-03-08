@@ -27,3 +27,6 @@ GET http://localhost:3000/lotes
 
 ###
 GET http://localhost:3000/lotes/ubicacion/3
+
+###
+GET http://localhost:3000/lotes/productos/2

@@ -19,11 +19,14 @@ makersCtrl.getMakers = async(req, res)=>{
     });
 }
 module.exports=makersCtrl;*/
+/*
 const db = require("../models");
 const Makers= db.makers;
 const sq = db.sequelize;
-const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op;*/
+
 /*Add new Maker*/ 
+/*
 exports.addMaker= async(req, res)=>{
     try {
         const maker = {
@@ -45,8 +48,9 @@ exports.addMaker= async(req, res)=>{
       } catch (error) {
         return res.status(500).json({ message: error.message });
       }    
-};
+};*/
 /*Get Maker's List*/ 
+/*
 exports.getMakers = async (req, res)=>{
     try {
         Makers.findAll()
@@ -62,8 +66,9 @@ exports.getMakers = async (req, res)=>{
       } catch (error) {
         return res.status(500).json({ message: error.message });
       }
-};
+};*/
 /*Get Maker information*/
+/*
 exports.getMaker = async(req, res)=>{
     try {
         const { id } = req.params;
@@ -80,4 +85,16 @@ exports.getMaker = async(req, res)=>{
       } catch (error) {
         return res.status(500).json({ message: error.message });
       }   
+};*/
+const mysqlConnection = require ('../database/connection');
+productsCtrl={}
+productsCtrl.getMakers=async(req, res)=>{
+  mysqlConnection.query('CALL getMakers()', (err, rows,fields)=>{
+    if(!err){
+      res.json(rows[0]);
+    }else{
+      console.log(err);
+    }
+  });
 };
+module.exports= productsCtrl;
