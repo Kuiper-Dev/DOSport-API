@@ -2,7 +2,7 @@
   "name": "dosport-api",
   "version": "1.0.0",
   "description": "API para el sitio web DoSport de Multiasesoría Alfa Dos Mil",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
     "dev": "nodemon src/server/server.js",
     "start": "node src/server/server.js",
