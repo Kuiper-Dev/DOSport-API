@@ -86,7 +86,7 @@ exports.getMaker = async(req, res)=>{
         return res.status(500).json({ message: error.message });
       }   
 };*/
-const mysqlConnection = require ('../database/connection');
+const mysqlConnection = require ('../database/connection2');
 productsCtrl={}
 productsCtrl.getMakers=async(req, res)=>{
   mysqlConnection.query('CALL getMakers()', (err, rows,fields)=>{

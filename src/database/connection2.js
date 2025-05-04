@@ -1,18 +1,20 @@
-const mysql = require ('mysql');
+const mysql = require ('mysql2');
+ const fs = require('fs');
+ const path = require('path');
 
 const mysqlConnection=mysql.createConnection({
-    //host:'kuiper.clvx5mktpgqg.us-east-1.rds.amazonaws.com',
-    host:'localhost',
-    user:'root',
-    password:'secret',
+    host: 'localhost',
+    user: 'root',
+    password: 'secret',
     database: 'DoSport',
     port:33060,
-    multipleStatements: true
 });
+
 
 mysqlConnection.connect(function(err){
     if(err){
         console.log(err);
+        console.log('Ni entré');
         return;
     }else{
         console.log('DB is connected');
@@ -21,4 +23,3 @@ mysqlConnection.connect(function(err){
 
 module.exports= mysqlConnection;
 //module.exports= sequelize;
-

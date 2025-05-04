@@ -1,4 +1,4 @@
-const mysqlConnection = require('../database/connection');
+const mysqlConnection = require('../database/connection2');
 batchesCtrl={};
 
 batchesCtrl.addBatch=async(req, res)=>{

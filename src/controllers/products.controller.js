@@ -1,7 +1,7 @@
-/*const db = require("../models");
+const db = require("../models");
 const Products= db.products;
 const sq = db.sequelize;
-const Op = db.Sequelize.Op;*/
+const Op = db.Sequelize.Op;
 /*Add new Maker*/ 
 /*
 exports.addProduct= async(req, res)=>{
@@ -84,7 +84,7 @@ exports.getProductByCode   = async(req, res)=>{
         return res.status(500).json({ message: error.message });
       }   
 };*/
-const mysqlConnection = require ('../database/connection');
+const mysqlConnection = require ('../database/connection2');
 productsCtrl={}
 productsCtrl.addProducts=async(req, res)=>{
     const {name, productCode, makerId, statusId}=req.body;
@@ -118,13 +118,33 @@ productsCtrl.addProductImage = async(req, res)=>{
   });
 };
 productsCtrl.getProductsResume=async(req, res)=>{
-  mysqlConnection.query('CALL getProductsResume()', (err, rows, fields)=>{
+
+  //const { id } = req.params;
+  /*
+  mysqlConnection.query('CALL getProductResume(?)', id, (err, rows, fields)=>{
     if(!err){
       res.json(rows[0]);
     }else{
-      console.log(err);
+      console.log(err); 
     }
-  });
+  });*/
+  try {
+    const { id } = req.params;
+    await sq.query("CALL getProductResume(?)",
+    {replacements: [id]})
+    .then(([results, metadata]) => {
+      res.json(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retreiving the ."
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 productsCtrl.getProducts=async(req, res)=>{
@@ -137,14 +157,58 @@ productsCtrl.getProducts=async(req, res)=>{
   });
 };
 
-productsCtrl.getProductsImage=async(req, res)=>{
+productsCtrl.getProductCategories=async(req, res)=>{
   const { id } = req.params;
-  mysqlConnection.query('CALL getProductImages(?)', id, (err, rows, results,fields)=>{
+  mysqlConnection.query('CALL getProductCategories(?)', id, (err, rows,fields)=>{
+    if(!err){
+      res.json(rows[0]);
+    }else{
+      console.log(err);
+    }
+  });
+};
+
+productsCtrl.getProductsByCategory=async(req, res)=>{
+  try {
+    const {id}=req.params;
+    const {spid}=req.params;
+    
+    await sq.query("CALL getProductsByCategory(?,?)", {replacements: [id, spid]}).then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving data"
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+productsCtrl.getProductGallery=async(req, res)=>{
+  const { id } = req.params;
+  mysqlConnection.query('CALL getProductGallery(?)', id, (err, rows, results,fields)=>{
     if(!err){
       res.json(rows[0]);
     }else{
       console.log(err);
     }
   }); 
-}
+};
+/*
+productsCtrl.getProductInfo=async(req, res)=>{
+  const { id } = req.params;
+  mysqlConnection.query('CALL getProductInfo(?)', id, (err, rows, results,fields)=>{
+    if(!err){
+      res.json(rows[0]);
+    }else{
+      console.log(err);
+    }
+  }); 
+};*/
 module.exports= productsCtrl;

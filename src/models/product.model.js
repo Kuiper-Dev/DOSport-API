@@ -1,25 +1,27 @@
 module.exports = (sequelize, Sequelize) => {
     const products = sequelize.define("DS_Products", {
-      /*productId: {
+      productId: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true
-      },*/
+      },
+
+      code: {
+        type: Sequelize.STRING
+      },
+
       name: {
         type: Sequelize.STRING
       },
-      productCode: {
-        type: Sequelize.STRING
+      
+      price: {
+        type: Sequelize.DECIMAL,
       },
-      makerId: {
+      categoryId: {
         type: Sequelize.BIGINT,
         foreignKey:true
       },
-      statusId: {
-        type: Sequelize.BIGINT,
-        foreignKey:true
-      },
-      unitId: {
+      sportId: {
         type: Sequelize.BIGINT,
         foreignKey:true
       }

@@ -1,4 +1,4 @@
-const mysqlConnection = require ('../database/connection');
+const mysqlConnection = require ('../database/connection2');
 workersCtrl={}
 workersCtrl.addWorker=async(req, res)=>{
     const {userId, roleId, workerAvatar}=req.body;
